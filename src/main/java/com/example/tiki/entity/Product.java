@@ -21,8 +21,9 @@ public class Product {
     private Integer parent;
     private String isLeaf;
 
-//    @ManyToOne
-//    private Category category;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @Override
     public boolean equals(Object o) {

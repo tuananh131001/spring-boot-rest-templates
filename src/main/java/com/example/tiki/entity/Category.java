@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,9 +24,9 @@ public class Category {
     private String brandName;
     private String description;
     
-//    @OneToMany
-//    @ToString.Exclude
-//    private List products; //no
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private Collection<Product> products; //no
 
     @Override
     public boolean equals(Object o) {
