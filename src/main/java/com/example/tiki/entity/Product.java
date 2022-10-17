@@ -1,5 +1,6 @@
 package com.example.tiki.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -18,10 +19,13 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
-    private Integer parent;
-    private String isLeaf;
+    @Column(name = "brand_name")
+    private String brandName;
+    private String description;
+    private Integer quantity;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "category_id")
     private Category category;
 

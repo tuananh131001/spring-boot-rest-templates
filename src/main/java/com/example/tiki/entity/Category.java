@@ -21,12 +21,13 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
-    private String brandName;
-    private String description;
+    private Integer parent;
+    @Column(name = "is_leaf")
+    private String isLeaf;
     
-    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY,orphanRemoval = true,mappedBy = "category",cascade = CascadeType.ALL)
     @ToString.Exclude
-    private Collection<Product> products; //no
+    private Collection<Product> productList; //no
 
     @Override
     public boolean equals(Object o) {
