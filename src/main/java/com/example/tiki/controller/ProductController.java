@@ -43,7 +43,7 @@ public class ProductController {
         productService.deleteById(id);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<Map<String, Object>> getAllProductPage(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
