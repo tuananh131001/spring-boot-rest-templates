@@ -1,5 +1,7 @@
 package com.example.tiki.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -9,11 +11,11 @@ import java.util.List;
 import java.util.Objects;
 
 
-@AllArgsConstructor
+
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="category")
 public class Category {
@@ -21,7 +23,14 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private Integer parent;
+
+    @ManyToOne
+    @JsonBackReference
+    private Category parent;
+
+    @OneToMany(mappedBy="parent")
+    private List<Category> subCategory;
+
     @Column(name = "is_leaf")
     private String isLeaf;
     
