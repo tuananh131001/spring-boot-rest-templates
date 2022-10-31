@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <Container>
-        <ListProduct></ListProduct>
+        {/* <ListProduct></ListProduct> */}
         <ListCategory></ListCategory>
         <AddForm></AddForm>
       </Container>
