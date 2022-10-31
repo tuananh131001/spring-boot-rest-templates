@@ -12,6 +12,6 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Integer> {
-    @Query("SELECT p FROM Product p WHERE LOWER(p.name) LIKE LOWER(CONCAT('%', ?1,'%'))")
+    @Query("SELECT DISTINCT p FROM Product p WHERE LOWER(p.name) LIKE LOWER(CONCAT('%', ?1,'%'))")
     Page<Product> findAllByName(String name, Pageable pageable);
 }

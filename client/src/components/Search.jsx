@@ -3,20 +3,21 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function Search() {
-  const [name, setName] = useState("");
+  const [data, setData] = useState("");
+  const [query, setQuery] = useState("");
+
   const [product, setProduct] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/products?name=" + name).then(({ data }) => {
-      setProduct(data.tutorials);
+    axios.get("http://localhost:8080/api/products?name=" + query).then(({ data }) => {
+        setData(data.tutorials);
     });
     console.log(product);
-  }, [name]);
-  const [inputText, setInputText] = useState("");
+  }, [query]);
   let inputHandler = (e) => {
     //convert input text to lower case
     var lowerCase = e.target.value.toLowerCase();
-    setName(lowerCase);
+    setQuery(lowerCase);
   };
 
   return (
@@ -31,9 +32,8 @@ function Search() {
           label="Search"
         />
       </div>
-      <List input={inputText} />
       <List>
-        {name && product.map((prod) => <ListItem>{prod.name}</ListItem>)}
+        {query && data.map((prod) => <ListItem>{prod.name}</ListItem>)}
       </List>
     </div>
   );
