@@ -12,7 +12,6 @@ function Search() {
     axios.get("http://localhost:8080/api/products?name=" + query).then(({ data }) => {
         setData(data.tutorials);
     });
-    console.log(product);
   }, [query]);
   let inputHandler = (e) => {
     //convert input text to lower case
