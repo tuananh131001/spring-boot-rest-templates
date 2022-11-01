@@ -9,62 +9,44 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  Input,
 } from "@mui/material";
+import { useEffect } from "react";
+import axios from "axios";
+import { useForm } from "react-hook-form";
 function AddForm() {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  let onSubmit = (data) => {
+    
+    console.log(data)
+    // axios.post("http://localhost:8080/api/category/",)
+  };
   return (
     <Box
       component="form"
       sx={{
-        display:'flex',
-        flexDirection:'column',
+        display: "flex",
+        flexDirection: "column",
         "& .MuiTextField-root": { m: 1, width: "25ch" },
       }}
+      onSubmit={handleSubmit(onSubmit)}
       noValidate
       autoComplete="off"
-    >
-      <FormControl>
-        <FormLabel>Brand Name</FormLabel>
-        <input
-          type="text"
-          className="form-control"
-          id="description"
-          required
-          name="description"
-        />
-      </FormControl>
-      <FormControl>
-        <FormLabel>Description</FormLabel>
-        <input
-          type="text"
-          className="form-control"
-          id="description"
-          required
-          name="description"
-        />
-      </FormControl>
+    > 
       <FormControl>
         <FormLabel>Name</FormLabel>
-        <input />
-      </FormControl>
-      <FormControl>
-        <FormLabel>Quantity</FormLabel>
-        <input />
+        <input {...register("name")}/>
       </FormControl>
       <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
+        <InputLabel>Age</InputLabel>
         <Select
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
-          label="Age"
+          {...register("is_leaf")}
         >
-         
           <MenuItem value={"yes"}>Yes</MenuItem>
           <MenuItem value={"no"}>No</MenuItem>
         </Select>
       </FormControl>
-      <Button variant="contained" className="btn btn-success">
-        Submit
-      </Button>
+      <Input type="submit"></Input>
     </Box>
   );
 }
